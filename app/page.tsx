@@ -14,9 +14,10 @@ export default function Page() {
     null
   );
 
+  const URL_BASE = "https://elvira-backend.onrender.com";
   const fetchProperties = async () => {
     try {
-      const response = await fetch("http://localhost:8000/properties", {
+      const response = await fetch(`${URL_BASE}/properties`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

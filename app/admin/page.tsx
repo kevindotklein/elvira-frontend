@@ -45,6 +45,8 @@ export default function AdminDashboard() {
   const { token, loading, authFetch } = useAuth();
   const router = useRouter();
 
+  const URL_BASE = "https://elvira-backend.onrender.com";
+
   if (loading) return <div>Carregando...</div>;
 
   if (!token) {
@@ -55,7 +57,7 @@ export default function AdminDashboard() {
 
   const fetchProperties = async () => {
     try {
-      const response = await fetch("http://localhost:8000/properties", {
+      const response = await fetch(`${URL_BASE}/properties`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -97,7 +99,7 @@ export default function AdminDashboard() {
 
   const handleAddProperty = async (propertySchema: PropertySchema) => {
     try {
-      const res = await authFetch(`http://localhost:8000/properties/`, {
+      const res = await authFetch(`${URL_BASE}/properties/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -126,7 +128,7 @@ export default function AdminDashboard() {
 
       try {
         const res = await authFetch(
-          `http://localhost:8000/properties/${propertyId}/upload?position=${index}`,
+          `${URL_BASE}/properties/${propertyId}/upload?position=${index}`,
           {
             method: "POST",
             headers: {
@@ -160,7 +162,7 @@ export default function AdminDashboard() {
   const handleRemoveImage = async (propertyId: number, imageId: number) => {
     try {
       const res = await authFetch(
-        `http://localhost:8000/properties/${propertyId}/upload/${imageId}`,
+        `${URL_BASE}/properties/${propertyId}/upload/${imageId}`,
         {
           method: "DELETE",
           headers: {
@@ -180,7 +182,7 @@ export default function AdminDashboard() {
     const propertySchema: PropertySchema = property as PropertySchema;
     try {
       const res = await authFetch(
-        `http://localhost:8000/properties/${property.id}`,
+        `${URL_BASE}/properties/${property.id}`,
         {
           method: "PUT",
           headers: {
@@ -200,7 +202,7 @@ export default function AdminDashboard() {
   const handleDeleteProperty = async (propertyId: number) => {
     try {
       const res = await authFetch(
-        `http://localhost:8000/properties/${propertyId}`,
+        `${URL_BASE}/properties/${propertyId}`,
         {
           method: "DELETE",
           headers: {

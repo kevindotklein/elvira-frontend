@@ -18,6 +18,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   );
   const [loading, setLoading] = useState(true);
 
+
+  const URL_BASE = "https://elvira-backend.onrender.com";
   useEffect(() => {
     const savedToken = localStorage.getItem('token');
     if (savedToken) setToken(savedToken);
@@ -30,7 +32,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       formData.append('username', username); 
       formData.append('password', password);
 
-      const response = await fetch('http://localhost:8000/login', {
+      const response = await fetch(`${URL_BASE}/login`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/x-www-form-urlencoded' 
